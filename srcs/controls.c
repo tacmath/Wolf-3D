@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/15 19:09:13 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/04 17:38:10 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/05 16:22:20 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,7 +28,7 @@ void build_a_wall(t_wolf *wolf, t_vector2 new_pos)
 	else
 		wolf->pos.x = new_pos.x;
 }
-
+/*
 void	handle_mouse(t_wolf *wolf)
 {
 	double	center;
@@ -45,6 +45,14 @@ void	handle_mouse(t_wolf *wolf)
 		wolf->dir_angle += delta * 0.00001;
 		vector2_rotate(&wolf->dir, delta * 0.00001);
 	}
+}*/
+
+void	handle_mouse(t_wolf *wolf)
+{
+	vector2_rotate(&wolf->dir, (wolf->mouse_pos.x - (SCREEN_X / 2)) * 0.2);
+	mlx_mouse_move(wolf->ml->win_ptr, SCREEN_X / 2, SCREEN_Y / 2);
+	wolf->mouse_pos.x = SCREEN_X / 2;
+	wolf->mouse_pos.y = SCREEN_Y / 2;
 }
 
 double springt(t_wolf *wolf)

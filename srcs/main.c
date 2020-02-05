@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/11 15:53:01 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/07 14:59:18 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/05 16:19:54 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,6 +14,7 @@
 #include "wolf.h"
 #include <unistd.h>
 #include <time.h>
+//int	mlx_mouse_hide();
 
 void fill_background(t_wolf *wolf)
 {
@@ -25,8 +26,6 @@ void fill_background(t_wolf *wolf)
 	while (++n < wolf->ml->nb_pxl - wolf->offset * SCREEN_X)
 		wolf->ml->img_data[n] = wolf->floor;
 }
-
-#include <stdio.h>
 
 unsigned int	lempx_rgb(unsigned int r, unsigned int g, unsigned int b)
 {
@@ -90,7 +89,6 @@ int    ft_loop(t_wolf *wolf)
 	struct timespec before;
 	struct timespec after;
 	clock_t	fps = 0;
-
 	if (wolf->mode)
 	{
 		other_mode(wolf);
@@ -211,6 +209,10 @@ int main(int ac, char **av)
 //			return (-1);
 		init_key(wolf);
 		init_button(wolf);
+		mlx_mouse_hide();
+		mlx_mouse_move(wolf->ml->win_ptr, SCREEN_X / 2, SCREEN_Y / 2);
+		wolf->mouse_pos.x = SCREEN_X / 2;
+		wolf->mouse_pos.y = SCREEN_Y / 2;
 	}
 	else
 		return (-1);

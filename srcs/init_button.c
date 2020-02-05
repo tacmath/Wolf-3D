@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/13 15:46:23 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/17 16:20:35 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/05 16:04:31 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,6 +29,8 @@ void	ft_return(t_wolf *wolf)
 	wolf->mode--;
 	if (wolf->mode == MENU)
 		print_menu(wolf);
+	if (wolf->mode == RUNING)
+		mlx_mouse_hide();
 }
 
 void	controls_menu(t_wolf *wolf)

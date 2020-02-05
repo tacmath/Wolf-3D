@@ -46,12 +46,19 @@
 
 #define	MLX_H
 
-
 void	*mlx_init();
 /*
 **  needed before everything else.
 **  return (void *)0 if failed
 */
+
+/*
+** Mouse
+*/
+
+int mlx_mouse_hide();
+int mlx_mouse_show();
+int mlx_mouse_move(void *win_ptr, int x, int y);
 
 
 /*
@@ -100,6 +107,8 @@ int	mlx_expose_hook (void *win_ptr, int (*funct_ptr)(), void *param);
 
 int	mlx_loop_hook (void *mlx_ptr, int (*funct_ptr)(), void *param);
 int	mlx_loop (void *mlx_ptr);
+
+
 
 
 /*

@@ -6,7 +6,7 @@
 #    By: lperron <lperron@student.le-101.f>         +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/05/09 12:30:59 by lperron      #+#   ##    ##    #+#        #
-#    Updated: 2019/12/11 16:28:22 by mtaquet     ###    #+. /#+    ###.fr      #
+#    Updated: 2020/02/04 18:34:24 by mtaquet     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -17,7 +17,13 @@ FILES= point.c vector.c vector2.c rotate.c input.c fast_dda.c raycaster.c event.
 SRC= $(addprefix $(SRCDIR),$(FILES))
 OBJ= $(SRC:.c=.o)
 INC= ./includes/wolf.h
-INCFLAG= -I ./libft/includes/ -I ./minilibx/ -I ./includes/
+ifeq ($(shell uname -s),Linux)
+	INCFLAG= -I ./libft/includes/ -I ./minilibx/ -I ./includes/
+endif
+ifeq ($(shell uname -s),Darwin)
+	INCFLAG= -I ./libft/includes/ -I ./minilibx_macos/ -I ./includes/
+endif
+
 all: libs wolf3d
 
 libs:

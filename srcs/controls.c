@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/15 19:09:13 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/05 16:22:20 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/08 17:44:17 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -45,12 +45,16 @@ void	handle_mouse(t_wolf *wolf)
 		wolf->dir_angle += delta * 0.00001;
 		vector2_rotate(&wolf->dir, delta * 0.00001);
 	}
-}*/
-
+}
+*/
 void	handle_mouse(t_wolf *wolf)
 {
-	vector2_rotate(&wolf->dir, (wolf->mouse_pos.x - (SCREEN_X / 2)) * 0.2);
-	mlx_mouse_move(wolf->ml->win_ptr, SCREEN_X / 2, SCREEN_Y / 2);
+	double	delta;
+
+	delta = (wolf->mouse_pos.x - (SCREEN_X / 2)) * 0.2;
+	vector2_rotate(&wolf->dir, delta);
+	wolf->dir_angle += delta;
+	mlx_mouse_move(wolf->ml->mlx_ptr, wolf->ml->win_ptr, SCREEN_X / 2, SCREEN_Y / 2);
 	wolf->mouse_pos.x = SCREEN_X / 2;
 	wolf->mouse_pos.y = SCREEN_Y / 2;
 }

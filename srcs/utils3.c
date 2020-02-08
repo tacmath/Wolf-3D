@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/11 15:33:08 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/11 15:33:23 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/08 16:06:23 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,6 +18,7 @@ int  free_pack(t_pack *pack)
 {
     free(pack->name);
     free(pack->skybox);
+	free(pack->image);
     free(pack->menu.menu);
     free(pack->menu.background.file);
     free(pack->texture.textures);

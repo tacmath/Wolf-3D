@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/11 16:12:44 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/05 16:03:55 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/05 18:15:40 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,12 +29,15 @@ int        deal_key_up(int key, t_wolf *wolf)
             else
 			{
                 wolf->mode = RUNING;
-				mlx_mouse_hide();
+				mlx_mouse_hide(wolf->ml->mlx_ptr, wolf->ml->win_ptr);
+				mlx_mouse_move(wolf->ml->mlx_ptr, wolf->ml->win_ptr, SCREEN_X / 2, SCREEN_Y / 2);
+				wolf->mouse_pos.x = SCREEN_X / 2;
+				wolf->mouse_pos.y = SCREEN_Y / 2;
 			}
         }
         else
         {
-			mlx_mouse_show();
+			mlx_mouse_show(wolf->ml->mlx_ptr, wolf->ml->win_ptr);
             print_menu(wolf);
             wolf->mode = MENU;
         }

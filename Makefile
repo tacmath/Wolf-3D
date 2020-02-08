@@ -13,7 +13,7 @@
 
 CC= gcc
 SRCDIR= ./srcs/
-FILES= point.c vector.c vector2.c rotate.c input.c fast_dda.c raycaster.c event.c main.c init.c controls.c utils.c threads.c init_button.c get_pack_info.c get_pack_check.c get_pack_check2.c utils2.c utils3.c utils4.c menu.c menu_control.c menu_pack.c button.c key_event.c free.c
+FILES= point.c vector.c vector2.c rotate.c input.c fast_dda.c raycaster.c event.c main.c init.c controls.c utils.c threads.c init_button.c get_pack_info.c get_pack_check.c get_pack_check2.c utils2.c utils3.c utils4.c menu.c menu_control.c menu_pack.c button.c key_event.c img_utils.c free.c
 SRC= $(addprefix $(SRCDIR),$(FILES))
 OBJ= $(SRC:.c=.o)
 INC= ./includes/wolf.h

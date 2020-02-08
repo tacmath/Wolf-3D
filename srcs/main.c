@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/11 15:53:01 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/05 16:19:54 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/08 18:07:46 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -174,9 +174,9 @@ int  init_pack_menu(t_wolf *wolf)
 		if (!(image.img = mlx_xpm_file_to_image(wolf->ml->mlx_ptr, wolf->packs[n].image, &image.w, &image.h)))
 			return (0);
 		if (!(image.data = (int*)mlx_get_data_addr(image.img, &wolf->ml->bits_per_pixel, &wolf->ml->size_line, &wolf->ml->endian)))
-                        return (0);
+            return (0);
 		if (!(wolf->menu.pack.name[n] = ft_memalloc(sizeof(int) * (PACK_NAME_W * PACK_NAME_H))))
-                	return (0);
+            return (0);
 		m = -1;
 		while (++m < PACK_NAME_W * PACK_NAME_H && m < image.w * image.h)
 			wolf->menu.pack.name[n][m] = image.data[m];
@@ -190,32 +190,27 @@ int main(int ac, char **av)
 	t_wolf        *wolf; //pleaaaase; static // nope, stackoverflow
 	t_mlx_struct    ml;
 
+	if (ac != 2)
+		return (-1);
 	if (!(wolf = ft_memalloc(sizeof(t_wolf)))) ///// pffffffffffffff
 		return (-1);
-	if (ac > 1)
-	{
-		if (!ft_get_map(wolf, av[1]))
-			return (-1);
-		if (!init_mlx(&ml))
-			return (-1);
-		wolf->ml = &ml;
-		wolf->path = get_path(av[0]);
-		get_all_packs(wolf);
-		if (!load_selected_pack(wolf))
-			return (-1);
-		init_pack_menu(wolf);
-
-//		if (!wolf->packs || !load_pack(wolf, wolf->packs[0]))
-//			return (-1);
-		init_key(wolf);
-		init_button(wolf);
-		mlx_mouse_hide();
-		mlx_mouse_move(wolf->ml->win_ptr, SCREEN_X / 2, SCREEN_Y / 2);
-		wolf->mouse_pos.x = SCREEN_X / 2;
-		wolf->mouse_pos.y = SCREEN_Y / 2;
-	}
-	else
+	wolf->fov = 45;
+	if (!ft_get_map(wolf, av[1]))
+		return (-1);			//free map
+	if (!init_mlx(&ml))
+		return (-1);			//free mlx
+	wolf->ml = &ml;
+	wolf->path = get_path(av[0]);
+	get_all_packs(wolf);
+	if (!load_selected_pack(wolf))
 		return (-1);
+	init_pack_menu(wolf);
+	init_key(wolf);
+	init_button(wolf);
+	mlx_mouse_hide(wolf->ml->mlx_ptr, wolf->ml->win_ptr);
+	mlx_mouse_move(wolf->ml->mlx_ptr, wolf->ml->win_ptr, SCREEN_X / 2, SCREEN_Y / 2);
+	wolf->mouse_pos.x = SCREEN_X / 2;
+	wolf->mouse_pos.y = SCREEN_Y / 2;
 	t_vector2 tmp = init_vector2(0, -1);
 	wolf->dir = tmp;
 	wolf->dir_angle = -90;

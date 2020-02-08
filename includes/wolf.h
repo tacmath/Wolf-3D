@@ -558,5 +558,11 @@ int check_pack(char *path, t_pack *pack);
 int check_line(int fd, char *line, t_pack *pack);
 int check_head(char *line, t_pack *pack);
 
+/*
+** img_utils.c
+*/
+
+unsigned int	*cut_img(unsigned int *img_old, t_point old_size, t_point start, t_point size);
+unsigned int	*resize_img(unsigned int *img_old, t_point size_old, double ratio);
 
 #endif

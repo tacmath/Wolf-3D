@@ -6,7 +6,7 @@
 /*   By: lperron <lperron@student.le-101.f>         +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/22 01:35:42 by lperron      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/04 17:31:54 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/08 18:07:00 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -106,12 +106,24 @@ void	raycaster_col(t_wolf *wolf, int x, double angle, t_vector2 dir_ray)
 //	draw_col(wolf, x, inter, angle);
 }
 
+double	mod(double x)
+{
+	while (x < 0)
+		x += 360;
+	while (x > 360)
+		x -= 360;
+	return (x);
+}
+
 void	draw_all(t_wolf *wolf)
 {
+	int	startx;
 	int x;
 	int y;
 
 	wolf->offset += SCREEN_Y / 2;
+	if (wolf->skybox)
+		startx = mod(wolf->dir_angle - wolf->fov / 2.)/ 360. * wolf->skybox_size.w;
 	y = -1;
 	while (++y < SCREEN_Y)
 	{
@@ -124,7 +136,10 @@ void	draw_all(t_wolf *wolf)
 			}
 			else if (y < wolf->offset)
 			{
-				wolf->ml->img_data[SCREEN_X * y + x] = wolf->roof;
+				if (wolf->skybox == 0)
+					wolf->ml->img_data[SCREEN_X * y + x] = wolf->roof;
+				else
+					wolf->ml->img_data[SCREEN_X * y + x] = wolf->skybox[wolf->skybox_size.w * y + x + startx];
 			}
 			else
 				wolf->ml->img_data[SCREEN_X * y + x] = wolf->floor;

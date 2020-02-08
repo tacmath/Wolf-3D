@@ -257,23 +257,51 @@ int load_buttons(t_wolf *wolf, t_button_pack button)
 	return (1);
 }
 
+int	resize_n_cut_skb(t_image *skybox, t_wolf *wolf, int sizex)
+{
+	double	ratio;
+	unsigned int	*tmp;
+	t_point	new_size;
+	
+	
+	ratio = sizex / (double)skybox->w;
+	//ft_printf("%d\n", (int)(skybox->h * ratio));
+	if (skybox->h * ratio < 0.6 * SCREEN_Y) //we can't cut on x axis, else the skybox will not be seamless, so no clean resize possible
+		return (0);
+	//ft_printf("2\n");
+	if (!(tmp = resize_img((unsigned int*)skybox->data, init_point(skybox->w, skybox->h), ratio)))
+		return (0);
+	new_size = init_point(sizex, skybox->h * ratio);
+	if (!(wolf->skybox = cut_img(tmp, new_size, init_point(0, 0), init_point(sizex, 0.6 * SCREEN_Y))))
+	{
+		free(tmp);
+		return (0);
+	}
+	wolf->skybox_size.w = sizex;
+	wolf->skybox_size.h = SCREEN_Y * 0.6;
+	free(tmp);
+	return (1);
+}
+#include <stdio.h>
 int get_skybox(t_wolf *wolf, char *file)
 {
 	t_image	skybox;
-	int n;
+	int	size;
+//	int	n;
 
 	if (!(skybox.img = mlx_xpm_file_to_image(wolf->ml->mlx_ptr, file, &skybox.w, &skybox.h)))
 		return (0);
 	if (!(skybox.data = (int*)mlx_get_data_addr(skybox.img,
 					&wolf->ml->bits_per_pixel, &wolf->ml->size_line, &wolf->ml->endian)))
 		return (0);
-	if (!(wolf->skybox = malloc(sizeof(int) * skybox.w * skybox.h)))
+	size = (SCREEN_X * (360 / (double)wolf->fov));
+	//printf("1 : %d   %f\n", size, wolf->fov);
+	if (!(resize_n_cut_skb(&skybox, wolf, size)))
+	{
+	//	ft_printf("Err\n");
+		mlx_destroy_image(wolf->ml->mlx_ptr, skybox.img);
 		return (0);
-	n = -1;
-	while (++n < skybox.w * skybox.h)
-		wolf->skybox[n] = skybox.data[n];
-	wolf->skybox_size.w = skybox.w;
-	wolf->skybox_size.h = skybox.h;
+	}
 	mlx_destroy_image(wolf->ml->mlx_ptr, skybox.img);
 	return (1);
 }
@@ -283,6 +311,7 @@ int load_pack(t_wolf *wolf, t_pack pack)
 	wolf->roof = pack.roof;	
 	if (pack.skybox != 0)
 	{
+//		ft_printf("skybox :\n");
 		if (!get_skybox(wolf, pack.skybox))
 			return (0);
 	}

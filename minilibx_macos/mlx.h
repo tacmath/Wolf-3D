@@ -56,9 +56,9 @@ void	*mlx_init();
 ** Mouse
 */
 
-int mlx_mouse_hide();
-int mlx_mouse_show();
-int mlx_mouse_move(void *win_ptr, int x, int y);
+int mlx_mouse_hide(void *mlx_ptr, void *win_ptr);
+int mlx_mouse_show(void *mlx_ptr, void *win_ptr);
+int mlx_mouse_move(void *mlx_ptr, void *win_ptr, int x, int y);
 
 
 /*

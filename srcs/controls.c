@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/15 19:09:13 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/08 17:44:17 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/17 17:01:33 by mtaquet          ###   ########lyon.fr   */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,15 +15,23 @@
 
 void build_a_wall(t_wolf *wolf, t_vector2 new_pos)
 {
-	if (wolf->map->map[(int)(new_pos.y - 0.2)][(int)wolf->pos.x].type)
+	if (new_pos.y - 0.2 < 0
+		|| wolf->map->map[(int)(new_pos.y - 0.2)][(int)wolf->pos.x].type
+		|| wolf->map->map[(int)(new_pos.y - 0.2)][(int)wolf->pos.x].obj)
 			wolf->pos.y = (int)wolf->pos.y + 0.2;
-	else if (wolf->map->map[(int)(new_pos.y + 0.2)][(int)wolf->pos.x].type)
+	else if (new_pos.y + 0.2 > wolf->map->map_size.y
+		|| wolf->map->map[(int)(new_pos.y + 0.2)][(int)wolf->pos.x].type
+		|| wolf->map->map[(int)(new_pos.y + 0.2)][(int)wolf->pos.x].obj)
 		wolf->pos.y = (int)wolf->pos.y + 1 - 0.2;
 	else
 		wolf->pos.y = new_pos.y;
-	if (wolf->map->map[(int)wolf->pos.y][(int)(new_pos.x - 0.2)].type)
+	if (new_pos.x - 0.2 < 0
+		|| wolf->map->map[(int)wolf->pos.y][(int)(new_pos.x - 0.2)].type
+		|| wolf->map->map[(int)wolf->pos.y][(int)(new_pos.x - 0.2)].obj)
 			wolf->pos.x = (int)wolf->pos.x + 0.2;
-	else if (wolf->map->map[(int)wolf->pos.y][(int)(new_pos.x + 0.2)].type)
+	else if (new_pos.x + 0.2 > wolf->map->map_size.x
+		|| wolf->map->map[(int)wolf->pos.y][(int)(new_pos.x + 0.2)].type
+		|| wolf->map->map[(int)wolf->pos.y][(int)(new_pos.x + 0.2)].obj)
 			wolf->pos.x = (int)wolf->pos.x + 1 - 0.2;
 	else
 		wolf->pos.x = new_pos.x;

@@ -154,4 +154,7 @@ char					*ft_strjoin_mult(int n, ...);
 int						ft_super_free(int n, ...);
 int						ft_ssuper_free(int n, ...);
 
+void					ft_quicksort(void *tab, int len,
+		int type_size, int (*cmp)(void*, void*));
+
 #endif

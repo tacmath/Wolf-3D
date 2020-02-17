@@ -6,14 +6,14 @@
 #    By: lperron <lperron@student.le-101.f>         +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/05/09 12:30:59 by lperron      #+#   ##    ##    #+#        #
-#    Updated: 2020/02/04 18:34:24 by mtaquet     ###    #+. /#+    ###.fr      #
+#    Updated: 2020/02/16 17:16:03 by lperron          ###   ########lyon.fr    #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
 CC= gcc
 SRCDIR= ./srcs/
-FILES= point.c vector.c vector2.c rotate.c input.c fast_dda.c raycaster.c event.c main.c init.c controls.c utils.c threads.c init_button.c get_pack_info.c get_pack_check.c get_pack_check2.c utils2.c utils3.c utils4.c menu.c menu_control.c menu_pack.c button.c key_event.c img_utils.c free.c
+FILES= object.c point.c vector.c vector2.c rotate.c input.c fast_dda.c raycaster.c event.c main.c init.c controls.c utils.c init_button.c get_pack_info.c get_pack_check.c get_pack_check2.c utils2.c utils3.c utils4.c menu.c menu_control.c menu_pack.c button.c key_event.c img_utils.c free.c visibility.c
 SRC= $(addprefix $(SRCDIR),$(FILES))
 OBJ= $(SRC:.c=.o)
 INC= ./includes/wolf.h

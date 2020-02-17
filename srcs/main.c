@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/11 15:53:01 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/08 18:07:46 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/16 11:54:17 by lperron     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -147,6 +147,23 @@ int load_selected_pack(t_wolf *wolf)
 	return (1);
 }
 
+void	center_twins(t_wolf *wolf) //it's more cinematic if they're centered
+{
+	int	i;
+
+	i = -1;
+	while (++i < wolf->nb_obj)
+	{
+		if (wolf->obj[i].sprites[0] == 1)
+		{
+			if (wolf->obj[i].pos.x < wolf->map->map_size.x - 1)
+				wolf->obj[i].pos.x += 0.5;
+			if (wolf->obj[i].pos.y < wolf->map->map_size.y - 1)
+				wolf->obj[i].pos.y += 0.5;
+		}
+	}
+}
+
 int  init_pack_menu(t_wolf *wolf)
 {
 	int n;
@@ -205,15 +222,16 @@ int main(int ac, char **av)
 	if (!load_selected_pack(wolf))
 		return (-1);
 	init_pack_menu(wolf);
+	center_twins(wolf);
 	init_key(wolf);
 	init_button(wolf);
 	mlx_mouse_hide(wolf->ml->mlx_ptr, wolf->ml->win_ptr);
 	mlx_mouse_move(wolf->ml->mlx_ptr, wolf->ml->win_ptr, SCREEN_X / 2, SCREEN_Y / 2);
 	wolf->mouse_pos.x = SCREEN_X / 2;
 	wolf->mouse_pos.y = SCREEN_Y / 2;
-	t_vector2 tmp = init_vector2(0, -1);
+	t_vector2 tmp = init_vector2(-1, 0);
 	wolf->dir = tmp;
-	wolf->dir_angle = -90;
+	wolf->dir_angle = -180;
 	wolf->fov = 45.;
 	wolf->pos.x += EPSILON;
 	wolf->pos.y += EPSILON;

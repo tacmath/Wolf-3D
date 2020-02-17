@@ -1,45 +1,44 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   lempXdef.h                                       .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: lperron <lperron@student.le-101.f>         +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/04/27 16:03:54 by lperron      #+#   ##    ##    #+#       */
-/*   Updated: 2019/05/09 15:44:29 by lperron     ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lempxdef.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lperron <lperron@student.le-101.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/16 17:24:48 by lperron           #+#    #+#             */
+/*   Updated: 2020/02/16 17:34:08 by lperron          ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEMPXDEF_H
 # define LEMPXDEF_H
 
 # define NOEVENTMASK			0L
-# define KEYPRESSMASK			(1L<<0)
-# define KEYRELEASEMASK			(1L<<1)
-# define BUTTONPRESSMASK		(1L<<2)
-# define BUTTONRELEASEMASK		(1L<<3)
-# define ENTERWINDOWMASK		(1L<<4)
-# define LEAVEWINDOWMASK		(1L<<5)
-# define POINTERMOTIONMASK		(1L<<6)
-# define POINTERMOTIONHINTMASK		(1L<<7)
-# define BUTTON1MOTIONMASK		(1L<<8)
-# define BUTTON2MOTIONMASK		(1L<<9)
-# define BUTTON3MOTIONMASK		(1L<<10)
-# define BUTTON4MOTIONMASK		(1L<<11)
-# define BUTTON5MOTIONMASK		(1L<<12)
-# define BUTTONMOTIONMASK		(1L<<13)
-# define KEYMAPSTATEMASK		(1L<<14)
-# define EXPOSUREMASK			(1L<<15)
-# define VISIBILITYCHANGEMASK		(1L<<16)
-# define STRUCTURENOTIFYMASK		(1L<<17)
-# define RESIZEREDIRECTMASK		(1L<<18)
-# define SUBSTRUCTURENOTIFYMASK		(1L<<19)
-# define SUBSTRUCTUREREDIRECTMASK	(1L<<20)
-# define FOCUSCHANGEMASK		(1L<<21)
-# define PROPERTYCHANGEMASK		(1L<<22)
-# define COLORMAPCHANGEMASK		(1L<<23)
-# define OWNERGRABBUTTONMASK		(1L<<24)
+# define KEYPRESSMASK			1L
+# define KEYRELEASEMASK			2L
+# define BUTTONPRESSMASK		4L
+# define BUTTONRELEASEMASK		8L
+# define ENTERWINDOWMASK		16L
+# define LEAVEWINDOWMASK		32L
+# define POINTERMOTIONMASK		64L
+# define POINTERMOTIONHINTMASK		128L
+# define BUTTON1MOTIONMASK		256L
+# define BUTTON2MOTIONMASK		512L
+# define BUTTON3MOTIONMASK		1024L
+# define BUTTON4MOTIONMASK		2048L
+# define BUTTON5MOTIONMASK		4096L
+# define BUTTONMOTIONMASK		8192L
+# define KEYMAPSTATEMASK		16384L
+# define EXPOSUREMASK			0x8000L
+# define VISIBILITYCHANGEMASK		0x10000L
+# define STRUCTURENOTIFYMASK		0x20000L
+# define RESIZEREDIRECTMASK		0x40000L
+# define SUBSTRUCTURENOTIFYMASK		0x80000L
+# define SUBSTRUCTUREREDIRECTMASK	0x100000L
+# define FOCUSCHANGEMASK		0x200000L
+# define PROPERTYCHANGEMASK		0x400000L
+# define COLORMAPCHANGEMASK		0x800000L
+# define OWNERGRABBUTTONMASK		0x1000000L
 
 # define KEYPRESS		2
 # define KEYRELEASE		3

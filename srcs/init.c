@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   init.c                                           .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: lperron <lperron@student.le-101.f>         +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2020/02/09 00:31:14 by lperron      #+#   ##    ##    #+#       */
+/*   Updated: 2020/02/09 16:09:57 by mtaquet     ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
 
 #include "wolf.h"
 
@@ -129,7 +141,7 @@ int get_all_textures(t_wolf *wolf, t_texture texture)
 	while (src.y + src.h  <= planche.h)
 	{
 		src.x = 0;
-		while (src.x + src.w * 2 <= planche.w && id < texture.nb_textures)
+		while (src.x + src.w * 2 <= planche.w && id <= texture.nb_textures)
 		{
 			get_texture(wolf->textures[(int)id][0], planche, src);
 			src.x += src.w;
